@@ -92,6 +92,12 @@ export function ChatWindow({
                     type="text"
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
+                    onKeyDown={(e) => {
+                        if (e.key === 'Enter' && !e.shiftKey) {
+                            e.preventDefault();
+                            onSend();
+                        }
+                    }}
                     placeholder="Введите сообщение..."
                     style={{flex: 1, padding: '10px', borderRadius: '20px', border: '1px solid #ccc', outline: 'none'}}
                 />

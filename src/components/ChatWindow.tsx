@@ -1,16 +1,14 @@
 import {useRef, useEffect} from 'react';
-import {type ChatMessage, type GreenApiCredentials} from '../types';
+import type {ChatMessage, GreenApiCredentials} from '../types';
+import styles from './ChatWindow.module.css';
 
 interface ChatWindowProps {
     chatName: string;
     messages: ChatMessage[];
-    // Пропсы для ключей
     credentials: GreenApiCredentials;
     setCredentials: (creds: GreenApiCredentials) => void;
-    // Пропсы для номера телефона
     phoneNumber: string;
     setPhoneNumber: (phone: string) => void;
-    // Пропсы для поля ввода
     message: string;
     setMessage: (msg: string) => void;
     onSend: () => void;
@@ -27,33 +25,30 @@ export function ChatWindow({
     setMessage,
     onSend,
 }: ChatWindowProps) {
-    // Ссылка на конец ленты сообщений для авто-прокрутки
     const messagesEndRef = useRef<HTMLDivElement>(null);
 
-    // Автоматическая прокрутка вниз при новом сообщении
     useEffect(() => {
         messagesEndRef.current?.scrollIntoView({behavior: 'smooth'});
     }, [messages]);
 
     return (
-        <div style={{flex: 1, display: 'flex', flexDirection: 'column'}}>
-            {/* Шапка с ключами */}
-            <div style={{padding: '20px', borderBottom: '1px solid #ccc', backgroundColor: '#fff', display: 'flex', flexDirection: 'column', gap: '10px'}}>
-                <h3 style={{margin: 0}}>{chatName}</h3>
-                <div style={{display: 'flex', gap: '10px'}}>
+        <div className={styles.chatWindow}>
+            <div className={styles.header}>
+                <h3>{chatName}</h3>
+                <div className={styles.inputRow}>
                     <input
                         type="text"
                         placeholder="idInstance"
                         value={credentials.idInstance}
                         onChange={(e) => setCredentials({...credentials, idInstance: e.target.value})}
-                        style={{padding: '8px', borderRadius: '4px', border: '1px solid #ccc', flex: 1}}
+                        className={styles.inputField}
                     />
                     <input
                         type="text"
                         placeholder="apiTokenInstance"
                         value={credentials.apiTokenInstance}
                         onChange={(e) => setCredentials({...credentials, apiTokenInstance: e.target.value})}
-                        style={{padding: '8px', borderRadius: '4px', border: '1px solid #ccc', flex: 1}}
+                        className={styles.inputField}
                     />
                 </div>
                 <input
@@ -61,33 +56,23 @@ export function ChatWindow({
                     placeholder="Номер телефона получателя (например, 79991112233)"
                     value={phoneNumber}
                     onChange={(e) => setPhoneNumber(e.target.value)}
-                    style={{padding: '8px', borderRadius: '4px', border: '1px solid #ccc'}}
+                    className={styles.phoneInput}
                 />
             </div>
 
-            {/* Лента сообщений */}
-            <div style={{flex: 1, padding: '20px', backgroundColor: '#e5ddd5', overflowY: 'auto', display: 'flex', flexDirection: 'column', gap: '10px'}}>
+            <div className={styles.messagesArea}>
                 {messages.map((msg) => (
                     <div
                         key={msg.id}
-                        style={{
-                            alignSelf: msg.sender === 'me' ? 'flex-end' : 'flex-start',
-                            backgroundColor: msg.sender === 'me' ? '#dcf8c6' : '#fff',
-                            padding: '10px',
-                            borderRadius: '8px',
-                            maxWidth: '60%',
-                            boxShadow: '0 1px 1px rgba(0,0,0,0.1)',
-                        }}
+                        className={`${styles.message} ${msg.sender === 'me' ? styles.messageMe : styles.messageThem}`}
                     >
                         {msg.text}
                     </div>
                 ))}
-                {/* Пустой div для прокрутки */}
                 <div ref={messagesEndRef} />
             </div>
 
-            {/* Поле ввода */}
-            <div style={{padding: '20px', backgroundColor: '#f0f2f5', display: 'flex', gap: '10px'}}>
+            <div className={styles.inputArea}>
                 <input
                     type="text"
                     value={message}
@@ -99,12 +84,9 @@ export function ChatWindow({
                         }
                     }}
                     placeholder="Введите сообщение..."
-                    style={{flex: 1, padding: '10px', borderRadius: '20px', border: '1px solid #ccc', outline: 'none'}}
+                    className={styles.messageInput}
                 />
-                <button
-                    onClick={onSend}
-                    style={{padding: '10px 20px', borderRadius: '20px', border: 'none', backgroundColor: '#007bff', color: '#fff', cursor: 'pointer'}}
-                >
+                <button onClick={onSend} className={styles.sendButton}>
                     Отправить
                 </button>
             </div>

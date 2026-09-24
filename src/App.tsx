@@ -4,6 +4,7 @@ import type {ChatMessage, GreenApiCredentials} from './types';
 import {Sidebar} from './components/Sidebar';
 import {ChatWindow} from './components/ChatWindow';
 import {Notification} from './components/Notification';
+import styles from './App.module.css';
 
 function App() {
     // 1. Состояние для ключей (инициализируется из localStorage)
@@ -91,7 +92,7 @@ function App() {
     };
 
     return (
-        <div style={{display: 'flex', height: '100vh', fontFamily: 'Arial, sans-serif', margin: 0}}>
+        <div className={styles.app}>
             <Sidebar chatName="Тестовый чат" />
             <ChatWindow
                 chatName="Тестовый чат"

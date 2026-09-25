@@ -1,75 +1,49 @@
-# React + TypeScript + Vite
+# GREEN-API Chat
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Тестовое задание на должность «Фронтенд разработчик React».
 
-Currently, two official plugins are available:
+Веб-приложение для отправки и получения текстовых сообщений через [GREEN-API](https://green-api.com/) (инстанс Telegram).
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 🚀 Демо
 
-## React Compiler
+[Ссылка на задеплоенное приложение](/)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## ✨ Возможности
 
-## Expanding the ESLint configuration
+- Ввод учётных данных (`idInstance`, `apiTokenInstance`) с сохранением в `localStorage`
+- Ввод номера телефона получателя
+- Отправка текстовых сообщений через метод `sendMessage`
+- Получение входящих сообщений через метод `receiveNotification` (polling каждые 5 секунд)
+- Отображение переписки в виде чата (исходящие — справа, входящие — слева)
+- Автоматическая прокрутка к новому сообщению
+- Отправка сообщения по нажатию Enter
+- Всплывающие уведомления об успехе/ошибке с плавной анимацией
+- Адаптивный дизайн в стиле Telegram
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 🛠️ Стек технологий
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- **React 19** + **TypeScript**
+- **Vite** — сборщик
+- **CSS Modules** — изолированные стили
+- **GREEN-API** — REST API для работы с Telegram
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## 📦 Установка и запуск
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### Требования
+- Node.js 18+
+- npm или yarn
 
-```
+### Локальный запуск
 
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
+```bash
+# 1. Клонировать репозиторий
+git clone https://github.com/Vera-fe/green-api-chat.git
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+# 2. Перейти в папку проекта
+cd green-api-chat
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+# 3. Установить зависимости
+npm install
 
-```
+# 4. Запустить dev-сервер
+npm run dev

@@ -1,6 +1,7 @@
 import {useRef, useEffect} from 'react';
 import type {ChatMessage, GreenApiCredentials} from '../types';
 import styles from './ChatWindow.module.css';
+import sendIcon from '../assets/send_button.png';
 
 interface ChatWindowProps {
     chatName: string;
@@ -34,7 +35,7 @@ export function ChatWindow({
     return (
         <div className={styles.chatWindow}>
             <div className={styles.header}>
-                <h3>{chatName}</h3>
+                <div className={styles.headerTitle}>{chatName}</div>
                 <div className={styles.inputRow}>
                     <input
                         type="text"
@@ -87,7 +88,7 @@ export function ChatWindow({
                     className={styles.messageInput}
                 />
                 <button onClick={onSend} className={styles.sendButton}>
-                    Отправить
+                    <img src={sendIcon} alt="Отправить" className={styles.sendIcon} />
                 </button>
             </div>
         </div>

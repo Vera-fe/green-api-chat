@@ -1,0 +1,41 @@
+.notification {
+    position: fixed;
+    bottom: 17px;
+    right: 20px;
+    padding: 14px 20px;
+    border-radius: 12px;
+    color: #fff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    z-index: 1000;
+    font-size: 14px;
+    font-weight: 500;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.success {
+    background-color: #9ad662;
+}
+
+.error {
+    background-color: #da677a;
+}
+
+.closeButton {
+    background: none;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    opacity: 0.8;
+    transition: opacity 0.2s;
+    padding: 0;
+    line-height: 1;
+}
+
+.closeButton:hover {
+    opacity: 1;
+}

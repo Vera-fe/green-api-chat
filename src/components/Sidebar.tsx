@@ -7,10 +7,12 @@ interface SidebarProps {
 export function Sidebar({chatName}: SidebarProps) {
     return (
         <div className={styles.sidebar}>
-            <h2>Чаты</h2>
-            <div className={styles.chatItem}>
-                <strong>{chatName}</strong>
-                <p className={styles.chatHint}>Нажмите, чтобы открыть</p>
+            <div className={styles.sidebarHeader}>Чаты</div>
+            <div className={styles.chatList}>
+                <div className={`${styles.chatItem} ${styles.chatItemActive}`}>
+                    <span className={styles.chatName}>{chatName}</span>
+                    <span className={styles.chatHint}>Нажмите, чтобы открыть</span>
+                </div>
             </div>
         </div>
     );
